@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     private int healthPoints = 3;
     private int maxHealthPoints = 3;
-    public int waterPoints = 0;
+    public int waterPoints = 4;
     private int maxWaterPoints = 13;
 
     public Sprite[] healthSprites = new Sprite[3];
@@ -31,6 +31,7 @@ public class PlayerStats : MonoBehaviour
         seedSpriteRend = GameObject.Find("HoldingSeed").GetComponent<SpriteRenderer>();
         weaponSpriteRend = GameObject.Find("CurrentWeapon").GetComponent<SpriteRenderer>();
         playerMove = GetComponent<PlayerMovement>();
+        waterSpriteRend.sprite = waterSprites[4];
     }
 
     void Update()

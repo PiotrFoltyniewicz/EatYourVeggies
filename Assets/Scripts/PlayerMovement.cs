@@ -26,10 +26,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
-        if(horizontalMove != 0 || verticalMove != 0)
-        {
-            animator.SetFloat("HorizontalMovement", horizontalMove);
-        }
         animator.SetFloat("Speed", Mathf.Abs(verticalMove) + Mathf.Abs(horizontalMove));
         Vector2 movementDirection = new Vector2(horizontalMove, verticalMove).normalized;
         rb.MovePosition(rb.position + movementDirection * Time.deltaTime * movementSpeed);

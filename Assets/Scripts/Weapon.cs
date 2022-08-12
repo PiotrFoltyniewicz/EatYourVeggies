@@ -35,6 +35,10 @@ public class Weapon : MonoBehaviour
     protected void Attack()
     {
         GameObject tempAttack = Instantiate(attackEffect, firePoint.position, firePoint.rotation, null);
+        if(firePoint.parent.localScale.x == -1f)
+        {
+            tempAttack.transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
         tempAttack.GetComponent<Attack>().damage = damage;
         tempAttack.GetComponent<Attack>().weapon = gameObject;
     }
