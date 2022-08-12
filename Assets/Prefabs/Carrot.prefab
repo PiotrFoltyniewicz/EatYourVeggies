@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395086754d065ea4086d6fc6519df3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  attackSpeed: 0.3
-  durability: 0
+  damage: 7
+  attackSpeed: 0.4
+  durability: 50
   bulletLifeTime: 0
   bulletSpeed: 0
   bulletPierce: 0

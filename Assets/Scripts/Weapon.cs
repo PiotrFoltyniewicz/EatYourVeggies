@@ -41,5 +41,17 @@ public class Weapon : MonoBehaviour
         }
         tempAttack.GetComponent<Attack>().damage = damage;
         tempAttack.GetComponent<Attack>().weapon = gameObject;
+        durability--;
+        if(durability <= 0)
+        {
+            DestroyWeapon();
+        }
+    }
+
+    protected void DestroyWeapon()
+    {
+        transform.parent.GetComponent<PlayerStats>().currentWeapon = "None";
+        transform.parent.GetComponent<PlayerStats>().GiveWeapon("None");
+        Destroy(gameObject);
     }
 }

@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 5970709892303488855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1528046228698923403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061737896400879374}
+  m_Layer: 0
+  m_Name: TempWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2061737896400879374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528046228698923403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5970709892303488855}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5970709892303488848
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +97,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527293622}
+  - {fileID: 2061737896400879374}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -155,8 +187,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0035609603, y: -0.0060169995}
-  m_Size: {x: 0.5014247, y: 0.93393964}
+  m_Offset: {x: 0.0013411641, y: -0.010919154}
+  m_Size: {x: 0.35436034, y: 0.74765825}
   m_Direction: 0
 --- !u!114 &5970709892303488851
 MonoBehaviour:
@@ -190,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecfec6271c3b824f9b3544554c20b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoints: 3
   waterPoints: 0
   healthSprites:
   - {fileID: 1902710853, guid: a920f5f55220c974b9908222e6d8f091, type: 3}
@@ -212,8 +245,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82e19ca08839d1b4eb6d541415a654ee, type: 3}
   seedSprites: []
   weaponSprites:
+  - {fileID: 21300000, guid: c76f6f0696dd0f541b6188b40d46d072, type: 3}
   - {fileID: 21300000, guid: 74302d7bf3809134ca50318b7e3738a0, type: 3}
   weapons:
+  - {fileID: 8542161557432120295, guid: a537bd29dbd00264cac18edb0ae53660, type: 3}
   - {fileID: 4718965164907084883, guid: 12239af29805b8e43a06497f8e904323, type: 3}
   transparentSprite: {fileID: 21300000, guid: c90be74b76bd2f341a84cb672c1da161, type: 3}
   currentSeed: Carrot

@@ -11,8 +11,12 @@ public class FlowerPot : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool playerNearby;
     private GameObject player;
-    private int plantStage;
-
+    private int plantStage = -1;
+    public Sprite[] healthbarSprites = new Sprite[6];
+    private GameObject healthBar;
+    private float healthPoint;
+    private float healthPointTime;
+    private int healthBarStage;
 
     void Awake()
     {
@@ -21,10 +25,18 @@ public class FlowerPot : MonoBehaviour
         player = GameObject.Find("Player");
         spritePair[0] = plantSprites[0];
         spritePair[1] = plantSprites[1];
+        healthBar = GameObject.Find("PlantHealthBar");
+        healthBar.SetActive(false);
     }
 
     private void Update()
     {
+        healthPointTime -= Time.deltaTime;
+        if(healthPointTime < 0 && plantStage > -1)
+        {
+            healthPointTime = healthPoint;
+            ChangeHealthSprite(healthBarStage--);
+        }
         plantGrowTime -= Time.deltaTime;
         if(plantGrowTime < 0 && plant != "None" && plantStage != 3)
         {
@@ -87,11 +99,13 @@ public class FlowerPot : MonoBehaviour
         switch(s)
         {
             case "None":
+                healthBar.SetActive(false);
                 sprites[0] = plantSprites[0];
                 sprites[1] = plantSprites[1];
                 plantStage = -1;
                 break;
             case "Carrot0":
+                healthBar.SetActive(true);
                 sprites[0] = plantSprites[2];
                 sprites[1] = plantSprites[3];
                 plantStage = 0;
@@ -113,9 +127,11 @@ public class FlowerPot : MonoBehaviour
                 sprites[0] = plantSprites[8];
                 sprites[1] = plantSprites[9];
                 plantStage = 3;
-                plantGrowTime = 9999;
+                plantGrowTime = 120;
                 break;
         }
+        healthPoint = plantGrowTime / 6;
+        healthBarStage = 5;
         return sprites;
     }
 
@@ -123,5 +139,11 @@ public class FlowerPot : MonoBehaviour
     {
         plant = plant.Remove(plant.Length - 1) + (plantStage + 1);
         spritePair = ChoosePlant(plant);
+        healthBar.GetComponent<SpriteRenderer>().sprite = healthbarSprites[5];
+    }
+
+    private void ChangeHealthSprite(int sprite)
+    {
+        healthBar.GetComponent<SpriteRenderer>().sprite = healthbarSprites[sprite];
     }
 }

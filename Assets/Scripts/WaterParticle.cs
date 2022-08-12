@@ -7,6 +7,7 @@ public class WaterParticle : MonoBehaviour
     private Transform player;
     private bool isCollected = false;
     public float speed;
+    public float lifeTime;
     void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -14,6 +15,11 @@ public class WaterParticle : MonoBehaviour
 
     void LateUpdate()
     {
+        lifeTime -= Time.deltaTime;
+        if(lifeTime < 0)
+        {
+            Destroy(gameObject);
+        }
         if(isCollected && player.GetComponent<PlayerStats>().waterPoints < 13)
         {
             transform.position = Vector3.Lerp(transform.position, player.position, Time.deltaTime * speed);

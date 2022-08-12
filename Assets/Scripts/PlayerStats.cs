@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int healthPoints = 3;
+    public int healthPoints = 3;
     private int maxHealthPoints = 3;
-    public int waterPoints = 4;
+    public int waterPoints = 0;
     private int maxWaterPoints = 13;
 
     public Sprite[] healthSprites = new Sprite[3];
     private SpriteRenderer healthSpriteRend;
     public Sprite[] waterSprites = new Sprite[14];
     private SpriteRenderer waterSpriteRend;
-    public List<Sprite> seedSprites = new List<Sprite>(); 
+    public List<Sprite> seedSprites = new List<Sprite>();
     private SpriteRenderer seedSpriteRend;
     public List<Sprite> weaponSprites = new List<Sprite>();
     public List<GameObject> weapons = new List<GameObject>();
@@ -31,7 +31,11 @@ public class PlayerStats : MonoBehaviour
         seedSpriteRend = GameObject.Find("HoldingSeed").GetComponent<SpriteRenderer>();
         weaponSpriteRend = GameObject.Find("CurrentWeapon").GetComponent<SpriteRenderer>();
         playerMove = GetComponent<PlayerMovement>();
-        waterSpriteRend.sprite = waterSprites[4];
+        waterSpriteRend.sprite = waterSprites[0];
+    }
+    private void Start()
+    {
+        ChooseWeapon("None");
     }
 
     void Update()
@@ -41,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage()
     {
         healthPoints--;
-        if(healthPoints == 0)
+        if (healthPoints == 0)
         {
             Debug.Log("Game Over");
             return;
@@ -52,7 +56,7 @@ public class PlayerStats : MonoBehaviour
     public void GiveWater()
     {
         waterPoints++;
-        if(waterPoints > maxWaterPoints)
+        if (waterPoints > maxWaterPoints)
         {
             waterPoints = maxWaterPoints;
         }
@@ -88,13 +92,24 @@ public class PlayerStats : MonoBehaviour
 
     private void ChooseWeapon(string s)
     {
-        switch(s)
+        Destroy(transform.GetChild(1).gameObject);
+        switch (s)
         {
+            case "None":
+                {
+                    weaponSpriteRend.sprite = weaponSprites[0];
+                    GameObject temp = Instantiate(weapons[0]);
+                    temp.transform.parent = transform;
+                    playerMove.animator.SetInteger("Weapon", 0);
+                }
+                break;
             case "Carrot":
-                weaponSpriteRend.sprite = weaponSprites[0];
-                GameObject temp = Instantiate(weapons[0]);
-                temp.transform.parent = transform;
-                playerMove.animator.SetInteger("Weapon", 1);
+                {
+                    weaponSpriteRend.sprite = weaponSprites[1];
+                    GameObject temp = Instantiate(weapons[1]);
+                    temp.transform.parent = transform;
+                    playerMove.animator.SetInteger("Weapon", 1);
+                }
                 break;
         }
     }
