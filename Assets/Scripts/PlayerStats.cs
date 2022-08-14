@@ -22,6 +22,8 @@ public class PlayerStats : MonoBehaviour
     public string currentSeed;
     public string currentWeapon;
     private PlayerMovement playerMove;
+    private List<GameObject> seedsAround = new List<GameObject>();
+    private GameObject closestSeed;
 
     public Animator animator;
     void Awake()
@@ -40,6 +42,34 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        if (seedsAround.Count == 0)
+        {
+            foreach (GameObject seed in GameObject.FindGameObjectsWithTag("Seed"))
+            {
+                seed.GetComponent<Seed>().StopGlow();
+            }
+
+        }
+        foreach (GameObject seed in seedsAround)
+        {
+            float distance = 999f;
+            if (Vector2.Distance(transform.position, seed.transform.position) < distance)
+            {
+                distance = Vector2.Distance(transform.position, seed.transform.position);
+                foreach (GameObject seed2 in GameObject.FindGameObjectsWithTag("Seed"))
+                {
+                    seed2.GetComponent<Seed>().StopGlow();
+                }
+                seed.GetComponent<Seed>().Glow();
+                closestSeed = seed;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E) && currentSeed == "None" && seedsAround.Contains(closestSeed))
+        {
+            GiveSeed(closestSeed.GetComponent<Seed>().seedName);
+            Destroy(closestSeed);
+            closestSeed = null;
+        }
     }
 
     public void TakeDamage()
@@ -78,16 +108,21 @@ public class PlayerStats : MonoBehaviour
         return temp;
     }
 
+    public void GiveSeed(string seedName)
+    {
+        currentSeed = seedName.Remove(seedName.Length - 4);
+        switch (seedName)
+        {
+            case "CarrotSeed":
+                seedSpriteRend.sprite = seedSprites[0];
+                break;
+        }
+    }
+
     public void GiveWeapon(string weaponName)
     {
         currentWeapon = weaponName;
         ChooseWeapon(weaponName);
-    }
-
-
-    private void ChooseSeed()
-    {
-
     }
 
     private void ChooseWeapon(string s)
@@ -111,6 +146,23 @@ public class PlayerStats : MonoBehaviour
                     playerMove.animator.SetInteger("Weapon", 1);
                 }
                 break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Seed")
+        {
+            seedsAround.Add(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Seed")
+        {
+            seedsAround.Remove(collision.gameObject);
+            
         }
     }
 

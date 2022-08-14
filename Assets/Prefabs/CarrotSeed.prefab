@@ -101,8 +101,9 @@ MonoBehaviour:
   seedSprites:
   - {fileID: 21300000, guid: 1308d690072b22c4eab418cafbd50dd3, type: 3}
   - {fileID: 21300000, guid: 0f5031e3547a97543aba10318c0c4129, type: 3}
-  lifeTime: 300
+  lifeTime: 15
   isGlowing: 0
+  seedName: CarrotSeed
 --- !u!58 &1589799950007169785
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,4 +119,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.3

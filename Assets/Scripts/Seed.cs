@@ -10,6 +10,7 @@ public class Seed : MonoBehaviour
     public float lifeTime;
     private Transform player;
     public bool isGlowing;
+    public string seedName;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,45 +26,14 @@ public class Seed : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            aroundPlayerSeeds++;
-            if(aroundPlayerSeeds == 1)
-            {
-                Glow();
-            }
-            else
-            {
-                float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-                GameObject closestSeed = gameObject;
-                foreach(GameObject seed in GameObject.FindGameObjectsWithTag("Seed"))
-                {
-                    if(Vector2.Distance(seed.transform.position, player.position) < distanceToPlayer)
-                    {
-                        closestSeed = seed;
-                        distanceToPlayer = Vector2.Distance(seed.transform.position, player.position);
-                    }
-                }
-                closestSeed.GetComponent<Seed>().Glow();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            aroundPlayerSeeds--;
-            spriteRenderer.sprite = seedSprites[0];
-            isGlowing = false;
-        }
-    }
-
     public void Glow()
     {
         isGlowing = true;
         spriteRenderer.sprite = seedSprites[1];
+    }
+    public void StopGlow()
+    {
+        isGlowing = false;
+        spriteRenderer.sprite = seedSprites[0];
     }
 }
