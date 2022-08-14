@@ -20,7 +20,7 @@ MonoBehaviour:
   _targetObjectType: 0
   _pathToSpriteRendererComponent: 
   _pathToImageComponent: 
-  _spriteAlignment: 2
+  _spriteAlignment: 0
   _spriteAlignmentCustomX: 11
   _spriteAlignmentCustomY: 2
   _spritesTargetLocation:

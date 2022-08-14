@@ -23,7 +23,7 @@ public class WaterParticle : MonoBehaviour
         if(isCollected && player.GetComponent<PlayerStats>().waterPoints < 13)
         {
             transform.position = Vector3.Lerp(transform.position, player.position, Time.deltaTime * speed);
-            if (Vector2.Distance(transform.position, player.position) < 0.5f)
+            if (Vector2.Distance(transform.position, player.position) < 0.75f)
             {
                 player.gameObject.GetComponent<PlayerStats>().GiveWater();
                 Destroy(gameObject);

@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public float damage;
     public float attackSpeed;
     private float attackTime;
-    public float durability;
+    public int durability;
     public float bulletLifeTime;
     public float bulletSpeed;
     public float bulletPierce;
@@ -15,16 +15,26 @@ public class Weapon : MonoBehaviour
     public GameObject attackEffect;
     private Transform firePoint;
     private PlayerMovement playerMove;
+    private PlayerStats playerStats;
+    private DurabilityBar durabilityBar;
     protected void Start()
     {
         playerMove = transform.parent.GetComponent<PlayerMovement>();
+        playerStats = playerMove.GetComponent<PlayerStats>();
+        durabilityBar = GameObject.Find("DurabilityBar").GetComponent<DurabilityBar>();
         firePoint = playerMove.firePoint;
+
+        durabilityBar.durability = durability;
+        durabilityBar.GetComponent<SpriteRenderer>().sprite = durabilityBar.durabilitySprites[13];
+        durabilityBar.durabilityPoint = (int)Mathf.Ceil(durability / 14);
+        durabilityBar.durabilityPointLeft = durabilityBar.durabilityPoint;
+        durabilityBar.currentSprite = 13;
     }
 
     protected void Update()
     {
         attackTime -= Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.Space) && attackTime < 0)
+        if(Input.GetKeyDown(KeyCode.Space) && attackTime < 0 && !playerStats.isDead)
         {
             playerMove.animator.SetTrigger("Attack");
             attackTime = attackSpeed;
@@ -42,6 +52,7 @@ public class Weapon : MonoBehaviour
         tempAttack.GetComponent<Attack>().damage = damage;
         tempAttack.GetComponent<Attack>().weapon = gameObject;
         durability--;
+        durabilityBar.ChangeSprite();
         if(durability <= 0)
         {
             DestroyWeapon();

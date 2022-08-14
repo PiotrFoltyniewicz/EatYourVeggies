@@ -12,7 +12,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !collision.isTrigger)
         {
             enemy.playerInAttackRange = true;
         }
@@ -20,7 +20,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !collision.isTrigger)
         {
             enemy.playerInAttackRange = false;
         }

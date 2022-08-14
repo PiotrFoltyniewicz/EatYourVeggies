@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     private PlayerMovement playerMove;
     private List<GameObject> seedsAround = new List<GameObject>();
     private GameObject closestSeed;
+    public bool isDead;
 
     public Animator animator;
     void Awake()
@@ -34,10 +36,11 @@ public class PlayerStats : MonoBehaviour
         weaponSpriteRend = GameObject.Find("CurrentWeapon").GetComponent<SpriteRenderer>();
         playerMove = GetComponent<PlayerMovement>();
         waterSpriteRend.sprite = waterSprites[0];
+        seedSpriteRend.sprite = seedSprites[0];
     }
     private void Start()
     {
-        ChooseWeapon("None");
+        ChooseWeapon("Fork");
     }
 
     void Update()
@@ -64,7 +67,7 @@ public class PlayerStats : MonoBehaviour
                 closestSeed = seed;
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && currentSeed == "None" && seedsAround.Contains(closestSeed))
+        if (Input.GetKeyDown(KeyCode.E) && currentSeed == "None" && seedsAround.Contains(closestSeed) && !isDead)
         {
             GiveSeed(closestSeed.GetComponent<Seed>().seedName);
             Destroy(closestSeed);
@@ -77,10 +80,17 @@ public class PlayerStats : MonoBehaviour
         healthPoints--;
         if (healthPoints == 0)
         {
-            Debug.Log("Game Over");
+            playerMove.animator.SetTrigger("Death");
+            Destroy(gameObject.GetComponent<PlayerMovement>());
+            isDead = true;
             return;
         }
         healthSpriteRend.sprite = healthSprites[healthPoints - 1];
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     public void GiveWater()
@@ -144,6 +154,14 @@ public class PlayerStats : MonoBehaviour
                     GameObject temp = Instantiate(weapons[1]);
                     temp.transform.parent = transform;
                     playerMove.animator.SetInteger("Weapon", 1);
+                }
+                break;
+            case "Fork":
+                {
+                    weaponSpriteRend.sprite = weaponSprites[2];
+                    GameObject temp = Instantiate(weapons[2]);
+                    temp.transform.parent = transform;
+                    playerMove.animator.SetInteger("Weapon", 2);
                 }
                 break;
         }

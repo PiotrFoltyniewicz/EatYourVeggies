@@ -109,19 +109,19 @@ public class FlowerPot : MonoBehaviour
                 sprites[0] = plantSprites[2];
                 sprites[1] = plantSprites[3];
                 plantStage = 0;
-                plantGrowTime = 30;
+                plantGrowTime = 45;
                 break;
             case "Carrot1":
                 sprites[0] = plantSprites[4];
                 sprites[1] = plantSprites[5];
                 plantStage = 1;
-                plantGrowTime = 30;
+                plantGrowTime = 45;
                 break;
             case "Carrot2":
                 sprites[0] = plantSprites[6];
                 sprites[1] = plantSprites[7];
                 plantStage = 2;
-                plantGrowTime = 30;
+                plantGrowTime = 45;
                 break;
             case "Carrot3":
                 sprites[0] = plantSprites[8];
