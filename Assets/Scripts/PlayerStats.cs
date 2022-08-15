@@ -26,6 +26,9 @@ public class PlayerStats : MonoBehaviour
     private List<GameObject> seedsAround = new List<GameObject>();
     private GameObject closestSeed;
     public bool isDead;
+    public AudioSource playerHit;
+    public AudioSource seedPickup;
+    public AudioSource waterPickup;
 
     public Animator animator;
     void Awake()
@@ -36,7 +39,6 @@ public class PlayerStats : MonoBehaviour
         weaponSpriteRend = GameObject.Find("CurrentWeapon").GetComponent<SpriteRenderer>();
         playerMove = GetComponent<PlayerMovement>();
         waterSpriteRend.sprite = waterSprites[0];
-        seedSpriteRend.sprite = seedSprites[0];
     }
     private void Start()
     {
@@ -77,9 +79,11 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage()
     {
+        playerHit.Play();
         healthPoints--;
         if (healthPoints == 0)
         {
+            healthSpriteRend.sprite = transparentSprite;
             playerMove.animator.SetTrigger("Death");
             Destroy(gameObject.GetComponent<PlayerMovement>());
             isDead = true;
@@ -95,6 +99,7 @@ public class PlayerStats : MonoBehaviour
 
     public void GiveWater()
     {
+        waterPickup.Play();
         waterPoints++;
         if (waterPoints > maxWaterPoints)
         {
@@ -112,6 +117,7 @@ public class PlayerStats : MonoBehaviour
 
     public string GetSeed()
     {
+
         string temp = currentSeed;
         seedSpriteRend.sprite = transparentSprite;
         currentSeed = "None";
@@ -120,11 +126,15 @@ public class PlayerStats : MonoBehaviour
 
     public void GiveSeed(string seedName)
     {
+        seedPickup.Play();
         currentSeed = seedName.Remove(seedName.Length - 4);
         switch (seedName)
         {
             case "CarrotSeed":
                 seedSpriteRend.sprite = seedSprites[0];
+                break;
+            case "LeekSeed":
+                seedSpriteRend.sprite = seedSprites[1];
                 break;
         }
     }
@@ -162,6 +172,14 @@ public class PlayerStats : MonoBehaviour
                     GameObject temp = Instantiate(weapons[2]);
                     temp.transform.parent = transform;
                     playerMove.animator.SetInteger("Weapon", 2);
+                }
+                break;
+            case "Leek":
+                {
+                    weaponSpriteRend.sprite = weaponSprites[3];
+                    GameObject temp = Instantiate(weapons[3]);
+                    temp.transform.parent = transform;
+                    playerMove.animator.SetInteger("Weapon", 3);
                 }
                 break;
         }

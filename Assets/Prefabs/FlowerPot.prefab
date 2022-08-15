@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 5473718508869625535, guid: 000e93393e88ce940b9de4457999d289, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 2142768239633410679}
   - component: {fileID: 2142768239633410678}
   - component: {fileID: 1092741276}
+  - component: {fileID: 2848245441543834591}
   m_Layer: 0
   m_Name: FlowerPot
   m_TagString: FlowerPot
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 70bdf1f6268c50044a63fa195f2ddf6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -239,6 +240,14 @@ MonoBehaviour:
   - {fileID: -325522475, guid: 1c2c8e39b2849ea45baf1f9a063d7895, type: 3}
   - {fileID: 2043377775, guid: d96e5b13b2af5a24ea5efe12496be01c, type: 3}
   - {fileID: -438230620, guid: 1c2c8e39b2849ea45baf1f9a063d7895, type: 3}
+  - {fileID: -936154165, guid: 48c59d1a4a76d8f4ba769dfcd08bb3c1, type: 3}
+  - {fileID: -1495804069, guid: 4f80698cd79e1d0428ed578ed788dc55, type: 3}
+  - {fileID: 1101370870, guid: 48c59d1a4a76d8f4ba769dfcd08bb3c1, type: 3}
+  - {fileID: -1853329163, guid: 4f80698cd79e1d0428ed578ed788dc55, type: 3}
+  - {fileID: -1236716540, guid: 48c59d1a4a76d8f4ba769dfcd08bb3c1, type: 3}
+  - {fileID: -725279179, guid: 4f80698cd79e1d0428ed578ed788dc55, type: 3}
+  - {fileID: -143654478, guid: 48c59d1a4a76d8f4ba769dfcd08bb3c1, type: 3}
+  - {fileID: 2140762387, guid: 4f80698cd79e1d0428ed578ed788dc55, type: 3}
   healthbarSprites:
   - {fileID: 383408651081951271, guid: 000e93393e88ce940b9de4457999d289, type: 3}
   - {fileID: -7826337165259564139, guid: 000e93393e88ce940b9de4457999d289, type: 3}
@@ -246,3 +255,100 @@ MonoBehaviour:
   - {fileID: -7759853443495454259, guid: 000e93393e88ce940b9de4457999d289, type: 3}
   - {fileID: 6131458154072249969, guid: 000e93393e88ce940b9de4457999d289, type: 3}
   - {fileID: 5473718508869625535, guid: 000e93393e88ce940b9de4457999d289, type: 3}
+  flowerPot: {fileID: 2848245441543834591}
+--- !u!82 &2848245441543834591
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142768239633410683}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9bedba9300def1843902ccfe3c5c7549, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

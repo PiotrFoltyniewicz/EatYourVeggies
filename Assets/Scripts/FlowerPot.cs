@@ -17,6 +17,7 @@ public class FlowerPot : MonoBehaviour
     private float healthPoint;
     private float healthPointTime;
     private int healthBarStage;
+    public AudioSource flowerPot;
 
     void Awake()
     {
@@ -54,12 +55,14 @@ public class FlowerPot : MonoBehaviour
                         plant = "None";
                     else
                     {
+                        flowerPot.Play();
                         spritePair = ChoosePlant(plant);
                         spriteRenderer.sprite = spritePair[1];
                     }
                 }
                 else if(plantStage == 3)
                 {
+                    flowerPot.Play();
                     player.GetComponent<PlayerStats>().GiveWeapon(plant.Substring(0, plant.Length - 1));
                     plant = "None";
                     spritePair = ChoosePlant(plant);
@@ -68,6 +71,7 @@ public class FlowerPot : MonoBehaviour
                 }
                 else if(player.GetComponent<PlayerStats>().waterPoints == 13)
                 {
+                    flowerPot.Play();
                     player.GetComponent<PlayerStats>().GetWater();
                     WaterPlant();
                     if (playerNearby) spriteRenderer.sprite = spritePair[1];
@@ -109,19 +113,19 @@ public class FlowerPot : MonoBehaviour
                 sprites[0] = plantSprites[2];
                 sprites[1] = plantSprites[3];
                 plantStage = 0;
-                plantGrowTime = 45;
+                plantGrowTime = 40;
                 break;
             case "Carrot1":
                 sprites[0] = plantSprites[4];
                 sprites[1] = plantSprites[5];
                 plantStage = 1;
-                plantGrowTime = 45;
+                plantGrowTime = 40;
                 break;
             case "Carrot2":
                 sprites[0] = plantSprites[6];
                 sprites[1] = plantSprites[7];
                 plantStage = 2;
-                plantGrowTime = 45;
+                plantGrowTime = 40;
                 break;
             case "Carrot3":
                 sprites[0] = plantSprites[8];
@@ -129,9 +133,35 @@ public class FlowerPot : MonoBehaviour
                 plantStage = 3;
                 plantGrowTime = 120;
                 break;
+            case "Leek0":
+                healthBar.SetActive(true);
+                sprites[0] = plantSprites[10];
+                sprites[1] = plantSprites[11];
+                plantStage = 0;
+                plantGrowTime = 30;
+                break;
+            case "Leek1":
+                sprites[0] = plantSprites[12];
+                sprites[1] = plantSprites[13];
+                plantStage = 1;
+                plantGrowTime = 30;
+                break;
+            case "Leek2":
+                sprites[0] = plantSprites[14];
+                sprites[1] = plantSprites[15];
+                plantStage = 2;
+                plantGrowTime = 30;
+                break;
+            case "Leek3":
+                sprites[0] = plantSprites[16];
+                sprites[1] = plantSprites[17];
+                plantStage = 3;
+                plantGrowTime = 120;
+                break;
         }
         healthPoint = plantGrowTime / 6;
         healthBarStage = 5;
+        ChangeHealthSprite(5);
         return sprites;
     }
 
