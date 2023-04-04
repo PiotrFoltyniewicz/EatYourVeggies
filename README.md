@@ -1,5 +1,5 @@
 # EatYourVeggies
-Game made in 4 days for LOWREZJAM2022 Game Jam using Unity
+Game made in 4 days for LOWREZJAM2022 Game Jam using Unity.__
 The limitation for the Game Jam was to fit game in strict 64x64 resolution.
 
 Play the game here: https://piotrekfolt.itch.io/eat-your-veggies
